@@ -1,0 +1,28 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/logs/logs"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Baby胎动",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar":{
+    "selectedColor": "#333",
+    "borderStyle": "white",
+    "list":[{
+      "iconPath":"pages/imgs/td.png",
+      "selectedIconPath":"pages/imgs/td_select.png",
+      "pagePath":"pages/index/index",
+      "text":"胎动"
+    },{
+      "iconPath": "pages/imgs/baby.png",
+      "selectedIconPath": "pages/imgs/baby_select.png",
+      "pagePath": "pages/index/index",
+      "text": "孕期"
+    }]
+  },
+  "debug":true
+}
