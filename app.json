@@ -1,6 +1,6 @@
 {
   "pages":[
-    "pages/index/index",
+    "pages/td/td",
     "pages/logs/logs"
   ],
   "window":{
@@ -15,7 +15,7 @@
     "list":[{
       "iconPath":"pages/imgs/td.png",
       "selectedIconPath":"pages/imgs/td_select.png",
-      "pagePath":"pages/index/index",
+      "pagePath":"pages/td/td",
       "text":"胎动"
     },{
       "iconPath": "pages/imgs/baby.png",

@@ -1,0 +1,30 @@
+<view class="container">
+  <view class="td-container">
+    <block class="grid-cell"> 
+      <view>
+        <label class="td-title">有效胎动</label>
+        <view class="td-acount">
+          {{real_acount}} <text class="td-unit">次</text>
+        </view>
+      </view>
+    </block>
+    <block class="grid-cell">
+      <view>
+        <view>开始</view>
+        <view>倒计时</view>
+      </view>
+    </block>
+    <block class="grid-cell"> 
+      <view>
+        <label class="td-title">有效胎动</label>
+        <view class="td-acount">
+          {{acount}} <text class="td-unit">次</text>
+        </view>
+      </view>
+    </block>
+  </view>
+  <view class="container">
+    <button class="td-shark" bindtap="shark">动一下</button>
+    <button class="td-end">结束</button>
+  </view>
+</view>
