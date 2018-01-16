@@ -10,7 +10,7 @@
     </block>
     <block class="grid-cell">
       <view>
-        <view>{{start_time}} <text class="td-unit">开始</text></view>
+        <view >{{start_time}} <text class="td-unit">开始</text></view>
         <view >{{count_down}}</view>
       </view>
     </block>

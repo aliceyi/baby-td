@@ -9,7 +9,7 @@ Page({
     start_time:'',
     count_down:'',
     end_time:'',
-    de_count:3600, // 倒计时默认值，单位s
+    de_count:10, // 倒计时默认值，单位s
     flag:false, // 记录是否开始倒计时
   },
   /**
@@ -46,6 +46,8 @@ Page({
         de_count: time - 1,
       });
       setTimeout(self.countDown, 1000);
+    } else {
+      // 结束后逻辑
     }
     
   },
@@ -79,6 +81,7 @@ Page({
       //修改有效次数和点击次数
       self.setData({
         acount: self.data.acount + 1,
+        real_acount: self.data.acount + 1,
       });
 
       //点击结束保存数据
