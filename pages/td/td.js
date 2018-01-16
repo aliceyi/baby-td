@@ -22,27 +22,65 @@ Page({
       self.setData({
         flag: true,
       })
-      // 启动倒计时
-      var hours = parseInt(d.de_count / 3600);
-      var mins = parseInt(d.de_count / 60);
-      var seconds = d.de_count % 60;
-
-      console.log(hours, mins, seconds);
-      
+    }
+    // 启动倒计时
+    var time = self.data.de_count-1;
+    var hours = parseInt(time / 3600);
+    var mins = parseInt(time / 60);
+    var seconds = time % 60;
+    if(hours >1){
+      self.setData({
+        count_down: hours + ":" + mins + ":" + seconds,
+      });
+    } else if (mins > 0) {
+      self.setData({
+        count_down: mins + ":" + (seconds > 10 ?    seconds : '0' + seconds),
+      });
+    } else {
+      self.setData({
+        count_down: seconds > 10 ? seconds : '0' + seconds,
+      });
+    }
+    if (time > 0) {
+      self.setData({
+        de_count: time - 1,
+      });
+      setTimeout(self.countDown, 1000);
     }
     
-    
+  },
+  formateDate: function(date,type) {
+    var year = date.getFullYear()
+    var month = date.getMonth() + 1
+    var day = date.getDate()
+
+    var hour = date.getHours()
+    var minute = date.getMinutes()
+    var second = date.getSeconds()
+    if (type === 'h') {
+      return hour + ':' + minute ;
+    }
+    if (type === 'y') {
+      return year + '/' + month + '/' +day;
+    }
+    return year + '/' + month + '/' + day + hour + ':' + minute ;
   },
   /**
    * 点击胎动，开始记录
    */
   shark: function () {
     var self = this;
-    self.countDown();
       //开始倒计时，
+      if (!self.data.flag) self.countDown();
       //记录开始时间，
+      self.setData({
+        start_time: self.formateDate(new Date,'h'),
+      });
       //修改有效次数和点击次数
-    
+      self.setData({
+        acount: self.data.acount + 1,
+      });
+
       //点击结束保存数据
 
    },
