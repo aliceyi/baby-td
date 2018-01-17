@@ -4,13 +4,18 @@ Page({
    * 页面的初始数据
    */
   data: {
-    acount:0,
-    real_acount: 0,
-    start_time:'',
-    count_down:'',
-    end_time:'',
-    de_count:3600, // 倒计时默认值，单位s
+    acount:0, // 点击次数
+    real_acount: 0, // 有效点击次数
+    real_time:'', // 上一个有效点击的时间
+    start_time:'',// 开始时间
+    count_down:'',// 倒计时时间
+    end_time:'',// 结束时间
+    real_step: 1, // 默认有效胎动间隔 min
+    countdown_time: 3600, // 倒计时默认值，单位s
+    de_count:0, // 倒计时，计算值
     flag:false, // 记录是否开始倒计时
+    timmer: '', // 保存倒计时定时器
+    btn_text: '点击开始' // 按钮文案
   },
   /**
    * 倒计时
@@ -21,10 +26,17 @@ Page({
     if (!d.flag) {
       self.setData({
         flag: true,
+        btn_text: '动一下'
+      })
+    }
+    if (d.de_count === 0) {
+      self.setData({
+        de_count: self.data.countdown_time - 1,
       })
     }
     // 启动倒计时
-    var time = self.data.de_count-1;
+    var timmer = '';
+    var time = self.data.de_count ;
     var hours = parseInt(time / 3600);
     var mins = parseInt(time / 60);
     var seconds = time % 60;
@@ -34,7 +46,7 @@ Page({
       });
     } else if (mins > 0) {
       self.setData({
-        count_down: mins + ":" + (seconds > 10 ?    seconds : '0' + seconds),
+        count_down: mins + ":" + (seconds >= 10 ? seconds : '0' + seconds),
       });
     } else {
       self.setData({
@@ -45,44 +57,94 @@ Page({
       self.setData({
         de_count: time - 1,
       });
-      setTimeout(self.countDown, 1000);
+      timmer =  setTimeout(self.countDown, 1000);
+      self.setData({
+        timmer: timmer
+      })
     }
     
   },
   formateDate: function(date,type) {
-    var year = date.getFullYear()
-    var month = date.getMonth() + 1
-    var day = date.getDate()
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    var day = date.getDate();
 
-    var hour = date.getHours()
-    var minute = date.getMinutes()
-    var second = date.getSeconds()
+    var hour = date.getHours();
+    var minute = date.getMinutes();
+    var second = date.getSeconds();
     if (type === 'h') {
-      return hour + ':' + minute ;
+      return (hour > 10 ? hour : `0${hour}`) + ':' + (minute >= 10 ? minute : `0${minute}`) ;
     }
     if (type === 'y') {
       return year + '/' + month + '/' +day;
     }
-    return year + '/' + month + '/' + day + hour + ':' + minute ;
+    return year + '/' + month + '/' + day + (hour > 10 ? hour : `0${hour}`) + ':' + (minute >= 10 ? minute : `0${minute}`)  ;
+  },
+  resetData: function() {
+    this.setData({
+      acount: 0, // 点击次数
+      real_acount: 0, // 有效点击次数
+      real_time: '', // 上一个有效点击的时间
+      start_time: '',// 开始时间
+      count_down: '',// 倒计时时间
+      end_time: '',// 结束时间
+      de_count: 0, // 倒计时，计算值
+      timmer: '', // 保存倒计时定时器
+    });
   },
   /**
    * 点击胎动，开始记录
    */
   shark: function () {
-    var self = this;
+      var self = this, downTime='';
+      if (self.data.flag) {
+        //修改有效次数和点击次数
+        self.setData({
+          acount: self.data.acount + 1,
+        });
+        downTime = Date.now();
+      }
+      // 修改有效时间和有效次数
+      if (self.data.real_time === '' && self.data.flag) {
+        self.setData({
+          real_time: downTime,
+          real_acount: self.data.real_acount + 1,
+        });
+      } else if (downTime - self.data.real_time >= self.data.real_step * 60 * 1000) {
+        // 记录有效次数和有效时间
+        self.setData({
+          real_time: downTime,
+          real_acount: self.data.real_acount + 1,
+        });
+      }
       //开始倒计时，
-      if (!self.data.flag) self.countDown();
+      if (!self.data.flag) {
+        // 重新开始
+        if (self.data.end_time !== ''){
+          self.resetData();
+        } 
+        self.countDown();
+      }
       //记录开始时间，
       self.setData({
         start_time: self.formateDate(new Date,'h'),
       });
-      //修改有效次数和点击次数
-      self.setData({
-        acount: self.data.acount + 1,
-      });
-
-      //点击结束保存数据
-
+   },
+   end: function (){
+     var self = this;
+    // 设置结束时间
+     //记录开始时间，
+     self.setData({
+       end_time: self.formateDate(new Date, 'h'),
+     });
+    // 停止倒计时
+    clearTimeout(self.data.timmer);
+    // 文案修改 和 设置倒计时状态
+    self.setData({
+      btn_text: "重新开始",
+      flag: false,
+    });
+    // 保存数据
    },
   /**
    * 生命周期函数--监听页面加载
