@@ -6,6 +6,7 @@ Page({
   data: {
     acount:0, // 点击次数
     real_acount: 0, // 有效点击次数
+    date: '', // 日期保存
     real_time:'', // 上一个有效点击的时间
     start_time:'',// 开始时间
     count_down:'',// 倒计时时间
@@ -15,7 +16,16 @@ Page({
     de_count:0, // 倒计时，计算值
     flag:false, // 记录是否开始倒计时
     timmer: '', // 保存倒计时定时器
-    btn_text: '点击开始' // 按钮文案
+    btn_text: '点击开始', // 按钮文案
+    historyData: [
+      // {
+      //   start_time: '',
+      //   end_time: '',
+      //   real_acount: '',
+      //   acount: 0,
+      //   date: '',
+      // }
+    ], // 历史记录保存
   },
   /**
    * 倒计时
@@ -78,7 +88,7 @@ Page({
     if (type === 'y') {
       return year + '/' + month + '/' +day;
     }
-    return year + '/' + month + '/' + day + (hour > 10 ? hour : `0${hour}`) + ':' + (minute >= 10 ? minute : `0${minute}`)  ;
+    return year + '/' + month + '/' + day +' '+ (hour > 10 ?  hour :  `0${hour}`) + ':' + (minute >= 10 ? minute : `0${minute}`)  ;
   },
   resetData: function() {
     this.setData({
@@ -110,8 +120,7 @@ Page({
           real_time: downTime,
           real_acount: self.data.real_acount + 1,
         });
-      } else if (downTime - self.data.real_time >= self.data.real_step * 60 * 1000) {
-        // 记录有效次数和有效时间
+      } else if (downTime - self.data.real_time >= self.data.real_step * 60 * 1000) {// 记录有效次数和有效时间
         self.setData({
           real_time: downTime,
           real_acount: self.data.real_acount + 1,
@@ -119,6 +128,10 @@ Page({
       }
       //开始倒计时，
       if (!self.data.flag) {
+        // 记录当天日期
+        self.setData({
+          date: new Date,
+        })
         // 重新开始
         if (self.data.end_time !== ''){
           self.resetData();
@@ -129,14 +142,16 @@ Page({
       self.setData({
         start_time: self.formateDate(new Date,'h'),
       });
-   },
-   end: function (){
-     var self = this;
-    // 设置结束时间
-     //记录开始时间，
-     self.setData({
-       end_time: self.formateDate(new Date, 'h'),
-     });
+  },
+  /**
+ * 点击胎动，开始记录
+ */
+  end: function () {
+    var self = this;
+    //记录结束时间，
+    self.setData({
+      end_time: self.formateDate(new Date, 'h'),
+    });
     // 停止倒计时
     clearTimeout(self.data.timmer);
     // 文案修改 和 设置倒计时状态
@@ -144,14 +159,48 @@ Page({
       btn_text: "重新开始",
       flag: false,
     });
-    // 保存数据
-   },
+    var d = self.data;
+    
+    if( d.acount >0) {
+      // 保存数据
+      wx.getStorage({
+        key: 'history',
+        success: function (res) {
+          console.log(res.data)
+          if(res.data) {
+            self.setData({
+              historyData: res.data,
+            });
+          }
+          var history = self.data.historyData.concat(
+            {
+              start_time: d.start_time,
+              end_time: d.end_time,
+              real_acount: d.end_time,
+              acount: d.acount,
+              date: d.date,
+            }
+          )
+          wx.setStorage({
+            key: "history",
+            data: history,
+          })
+        }
+      })
+      
+    }
+    
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     
   },
+
+
+
+  
 
   /**
    * 生命周期函数--监听页面初次渲染完成
