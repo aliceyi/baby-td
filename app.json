@@ -1,6 +1,6 @@
 {
   "pages":[
-    "pages/td/td",
+    "pages/yq/yq",
     "pages/logs/logs"
   ],
   "window":{
@@ -20,7 +20,7 @@
     },{
       "iconPath": "pages/imgs/baby.png",
       "selectedIconPath": "pages/imgs/baby_select.png",
-      "pagePath": "pages/index/index",
+      "pagePath": "pages/yq/yq",
       "text": "孕期"
     }]
   },

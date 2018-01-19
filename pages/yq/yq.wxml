@@ -1,0 +1,29 @@
+<view class="container">
+  <view class="td-container">
+    <block class="grid-cell"> 
+      <view>
+        <label>末次月经开始时间</label>
+      </view>
+      <view class="section">
+        <picker mode="date" value="{{date}}"  bindchange="bindDateChange">
+          <view class="picker">
+            {{date}}
+          </view>
+        </picker>
+      </view>
+    </block>
+  </view>
+  <view class="td-container">
+    <block class="grid-cell"> 
+      <view>
+        <label>预产期: 2018/6/10</label>
+      </view>
+    </block>
+    <block class="grid-cell"> 
+      <view>
+        <label>距预产期:145 天</label>
+      </view>
+    </block>
+  </view>
+  <label> 健康助手</label>
+</view>

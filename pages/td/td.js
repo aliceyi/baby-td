@@ -163,16 +163,17 @@ Page({
     
     if( d.acount >0) {
       // 保存数据
-      wx.getStorage({
+
+      var history = '';
+      var getHistory = wx.getStorage({
         key: 'history',
         success: function (res) {
-          console.log(res.data)
           if(res.data) {
             self.setData({
               historyData: res.data,
             });
           }
-          var history = self.data.historyData.concat(
+          history = self.data.historyData.concat(
             {
               start_time: d.start_time,
               end_time: d.end_time,
@@ -187,9 +188,22 @@ Page({
           })
         }
       })
-      
+      if (!getHistory) {
+        history = [
+          {
+            start_time: d.start_time,
+            end_time: d.end_time,
+            real_acount: d.end_time,
+            acount: d.acount,
+            date: d.date,
+          }
+        ]
+        wx.setStorage({
+          key: "history",
+          data: history,
+        })
+      }
     }
-    
   },
   /**
    * 生命周期函数--监听页面加载
