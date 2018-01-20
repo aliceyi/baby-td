@@ -1,27 +1,31 @@
 <view class="container">
+  <view>
+    <label>孕 {{yweek}} 周 {{yday}} 天</label>
+  </view>
   <view class="td-container">
     <block class="grid-cell"> 
       <view>
         <label>末次月经开始时间</label>
       </view>
       <view class="section">
-        <picker mode="date" value="{{date}}"  bindchange="bindDateChange">
+        <picker mode="date" value="{{ycq}}"  bindchange="bindDateChange">
           <view class="picker">
-            {{date}}
+            {{ycq}} 
           </view>
         </picker>
       </view>
     </block>
   </view>
+
   <view class="td-container">
     <block class="grid-cell"> 
       <view>
-        <label>预产期: 2018/6/10</label>
+        <label>预产期: {{last_ycq}}</label>
       </view>
     </block>
     <block class="grid-cell"> 
       <view>
-        <label>距预产期:145 天</label>
+        <label>距预产期: {{last_days}} 天</label>
       </view>
     </block>
   </view>

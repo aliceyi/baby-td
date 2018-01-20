@@ -35,5 +35,33 @@ App({
   },
   globalData: {
     userInfo: null
+  },
+  formateDate: function (date, type) { // 格式化日期
+    var year = date.getFullYear();
+    var month = date.getMonth() + 1;
+    var day = date.getDate();
+
+    var hour = date.getHours();
+    var minute = date.getMinutes();
+    var second = date.getSeconds();
+    if (type === 'h') {
+      return (hour > 10 ? hour : `0${hour}`) + ':' + (minute >= 10 ? minute : `0${minute}`);
+    }
+    if (type === 'y') {
+      return year + '/' + month + '/' + day;
+    }
+    return year + '/' + month + '/' + day + ' ' + (hour > 10 ? hour : `0${hour}`) + ':' + (minute >= 10 ? minute : `0${minute}`);
+  },
+  formateDuring(mss) { // 毫秒转换成天数
+    var days = parseInt(mss / (1000 * 60 * 60 * 24));
+    var hours = parseInt((mss % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = parseInt((mss % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = (mss % (1000 * 60)) / 1000;
+    return {
+      days:days,
+      hours: hours,
+      minutes: minutes,
+      seconds: seconds
+    }
   }
 })

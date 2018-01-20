@@ -1,5 +1,6 @@
-Page({
+const app = getApp();
 
+Page({
   /**
    * 页面的初始数据
    */
@@ -140,7 +141,7 @@ Page({
       }
       //记录开始时间，
       self.setData({
-        start_time: self.formateDate(new Date,'h'),
+        start_time: app.formateDate(new Date,'h'),
       });
   },
   /**
@@ -150,7 +151,7 @@ Page({
     var self = this;
     //记录结束时间，
     self.setData({
-      end_time: self.formateDate(new Date, 'h'),
+      end_time: app.formateDate(new Date, 'h'),
     });
     // 停止倒计时
     clearTimeout(self.data.timmer);

@@ -1,7 +1,8 @@
 {
   "pages":[
     "pages/yq/yq",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/td/td"
   ],
   "window":{
     "backgroundTextStyle":"light",
