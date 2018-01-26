@@ -1,8 +1,8 @@
 {
   "pages":[
+    "pages/td/td",
     "pages/yq/yq",
-    "pages/logs/logs",
-    "pages/td/td"
+    "pages/logs/logs"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -14,13 +14,13 @@
     "selectedColor": "#333",
     "borderStyle": "white",
     "list":[{
-      "iconPath":"pages/imgs/td.png",
-      "selectedIconPath":"pages/imgs/td_select.png",
+      "iconPath":"pages/imgs/pink/td.png",
+      "selectedIconPath":"pages/imgs/pink/td_select.png",
       "pagePath":"pages/td/td",
       "text":"胎动"
     },{
-      "iconPath": "pages/imgs/baby.png",
-      "selectedIconPath": "pages/imgs/baby_select.png",
+      "iconPath": "pages/imgs/pink/baby.png",
+      "selectedIconPath": "pages/imgs/pink/baby_select.png",
       "pagePath": "pages/yq/yq",
       "text": "孕期"
     }]

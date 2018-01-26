@@ -25,7 +25,9 @@
 .td-unit {
   font-size: 12px;
 }
-
+.td-shark {
+  background: url('../imgs/pink/shark.png')
+}
 .grid-cell{
   flex: 1;
   border: 1px solid #000;
