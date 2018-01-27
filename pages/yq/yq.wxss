@@ -1,0 +1,11 @@
+.yq_block {
+  width: 200 rpx;
+}
+.yd_container {
+  box-shadow:0rpx 3rpx 3rpx 3rpx rgba(0, 0, 0, 0.1);
+  margin:20rpx;
+  border-radius:15rpx;
+}
+.yq-body {
+  margin-top: 20rpx;
+}

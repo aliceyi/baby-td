@@ -1,0 +1,43 @@
+<view class="container">
+<view wx:for="{{items}}" wx:key="{{i}}"   wx:for-index="i" wx:for-item="item" style="margin-bottom:20rpx;">
+    <view class="td-container h-title">
+      <block>
+      <view>
+        <text class='h-black'> {{item.date}} </text> <text> {{item.status}}</text>
+      </view> 
+      </block>
+      <block>
+      <view> 
+        <text>推算12小时胎动</text>
+        <text style='font-size: 40rpx'> {{item.ts_count}}</text>
+      </view>          
+      </block>
+    </view>
+    <view class="td-container h-block" wx:for="{{item.child}}" wx:key="{{j}}" wx:for-index="j" wx:for-item="item" >
+      <block class="grid-cell"> 
+        <view class='h-block-left'> 
+          <text>计时 60 分钟 </text>
+            <view class='b-label'>
+              {{item.start_time}} - {{item.end_time}}
+            </view>
+        </view>
+      </block>
+      <block class="grid-cell"> 
+        <view class='td-center'>
+          <text class='td-center td-pink-dark'>
+            {{item.real_acount}}
+          </text>
+          <view class='b-label td-pink-dark'>有效胎动</view>
+        </view>
+      </block>
+      <block class="grid-cell"> 
+        <view class='td-center'>
+          <text class='td-pink-light'>
+            {{item.acount}}
+          </text>
+          <view class='b-label td-pink-light'>点击次数</view>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>

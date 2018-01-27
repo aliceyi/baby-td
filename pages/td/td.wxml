@@ -4,31 +4,40 @@
       <view>
         <label class="td-title">有效胎动</label>
         <view class="td-acount">
-          {{real_acount}} <text class="td-unit">次</text>
+          {{real_acount}} 次
         </view>
       </view>
     </block>
     <block class="grid-cell">
       <view>
-        <view>
-          {{start_time}} 
+        <view style='text-align:center;margin-bottom:20rpx;'>
+          <text class="td-unit">{{start_time}} </text>
           <text class="td-unit" wx:if="{{flag && end_time === ''}}">开始</text> 
-          <text wx:if="{{end_time !== ''}}"> - {{end_time}}</text> 
+          <text class="td-unit" wx:if="{{end_time !== ''}}"> - {{end_time}}</text> 
         </view>
-        <view >{{count_down}}</view>
+        <view class='down-text'>{{count_down}}</view>
       </view>
     </block>
     <block class="grid-cell"> 
       <view>
         <label class="td-title">点击次数</label>
         <view class="td-acount">
-          {{acount}} <text class="td-unit">次</text>
+          {{acount}} 次
         </view>
       </view>
     </block>
   </view>
+  <view class="container" >
+    <image class="td-shark" src="../imgs/pink/shark.png" bindtap="shark">
+    </image>
+    <view class='td-shark-text'>{{btn_text}}</view>
+  </view>
   <view class="container">
-    <button class="td-shark" bindtap="shark">{{btn_text}}</button>
     <button class="td-end" bindtap="end">结束</button>
+  </view>
+  <view >
+     <navigator url="../history/history" style='position:absolute;right:40rpx;'>
+        <text class='td-unit'>历史记录</text>
+     </navigator>
   </view>
 </view>

@@ -178,7 +178,7 @@ Page({
             {
               start_time: d.start_time,
               end_time: d.end_time,
-              real_acount: d.end_time,
+              real_acount: d.real_acount,
               acount: d.acount,
               date: d.date,
             }

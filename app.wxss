@@ -13,3 +13,24 @@
   align-items: center;
   justify-content: space-between;
 }
+.td-center {
+  text-align: center;
+}
+.td-pink-light {
+  color: #FFD9D6;
+}
+.td-pink-dark {
+  color: #FF9183;
+}
+.td-black {
+  color:#666;
+}
+.f12 {
+  font-size: 24rpx;
+}
+.f14 {
+  font-size: 30rpx;
+}
+.f16 {
+  font-size: 32rpx;
+}

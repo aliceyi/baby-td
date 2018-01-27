@@ -13,7 +13,7 @@ Page({
     totalDays: 280,
   },
   init: function(){
-    const self = this;
+    const self = this; 
     // 初始化，今天日期， 若是设置过，显示设置过的数据
     const ycq = wx.getStorage({
       key: 'ycq',
@@ -72,6 +72,10 @@ Page({
         key: "ycq",
         data: self.data.ycq,
       });
+      // 计算预产期
+      self.computeWeek();
+      // 计算距离预产期的天数
+      self.computeYcq();
     }
     // 计算yu'can
   },

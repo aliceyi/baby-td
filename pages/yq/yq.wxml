@@ -1,13 +1,13 @@
 <view class="container">
-  <view>
-    <label>孕 {{yweek}} 周 {{yday}} 天</label>
+  <view class="td-center">
+    <label class="td-pink-dark f16">孕 {{yweek}} 周 {{yday}} 天</label>
   </view>
-  <view class="td-container">
+  <view class="td-container td-black">
     <block class="grid-cell"> 
       <view>
-        <label>末次月经开始时间</label>
+        <label class="f16">选择末次月经开始时间</label>
       </view>
-      <view class="section">
+      <view class="section f16">
         <picker mode="date" value="{{ycq}}"  bindchange="bindDateChange">
           <view class="picker">
             {{ycq}} 
@@ -17,17 +17,19 @@
     </block>
   </view>
 
-  <view class="td-container">
+  <view class="td-container td-black yd_container">
     <block class="grid-cell"> 
-      <view>
-        <label>预产期: {{last_ycq}}</label>
+      <view class="yq_block td-center td-pink-dark f16">
+        <text class="yq-title">预产期</text>
+        <view class="yq-body">{{last_ycq}}</view>
       </view>
     </block>
     <block class="grid-cell"> 
-      <view>
-        <label>距预产期: {{last_days}} 天</label>
+      <view class="yq_block td-center td-pink-dark f16">
+        <text class="yq-title">距预产期</text>
+        <view class="yq-body">{{last_days}} 天</view>
       </view>
     </block>
   </view>
-  <label> 健康助手</label>
+  <!-- <label> 健康助手</label> -->
 </view>

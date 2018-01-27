@@ -1,0 +1,26 @@
+.h-title {
+  background: #FFD9D6;
+  color: #FF9183;
+  font-size: 33rpx;
+  border-radius: 20rpx;
+  margin:20rpx;
+}
+.h-black {
+  color: #666;
+}
+.h-block {
+  background: #fff;
+  margin:0 40rpx 30rpx 40rpx;
+  border-radius: 20rpx;
+  font-size: 30rpx;
+  color: #666;
+  box-shadow: 0rpx 3rpx 3rpx 3rpx rgba(0, 0, 0, 0.1);
+}
+.h-block::before {
+  content: '';
+  border: 5rpx solid #FFD9D6;
+  height: 40rpx;
+}
+.b-label {
+  margin-top:20rpx;
+}

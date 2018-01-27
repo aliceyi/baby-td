@@ -1,7 +1,8 @@
 {
   "pages":[
-    "pages/td/td",
     "pages/yq/yq",
+    "pages/td/td",
+    "pages/history/history",
     "pages/logs/logs"
   ],
   "window":{
@@ -11,11 +12,11 @@
     "navigationBarTextStyle":"black"
   },
   "tabBar":{
-    "selectedColor": "#333",
+    "selectedColor": "#FF9183",
     "borderStyle": "white",
     "list":[{
       "iconPath":"pages/imgs/pink/td.png",
-      "selectedIconPath":"pages/imgs/pink/td_select.png",
+     "selectedIconPath":"pages/imgs/pink/td_select.png",
       "pagePath":"pages/td/td",
       "text":"胎动"
     },{
