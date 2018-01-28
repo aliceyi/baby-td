@@ -45,12 +45,12 @@ App({
     var minute = date.getMinutes();
     var second = date.getSeconds();
     if (type === 'h') {
-      return (hour > 10 ? hour : `0${hour}`) + ':' + (minute >= 10 ? minute : `0${minute}`);
+      return (hour >= 10 ? hour : `0${hour}`) + ':' + (minute >= 10 ? minute : `0${minute}`);
     }
     if (type === 'y') {
       return year + '/' + month + '/' + day;
     }
-    return year + '/' + month + '/' + day + ' ' + (hour > 10 ? hour : `0${hour}`) + ':' + (minute >= 10 ? minute : `0${minute}`);
+    return year + '/' + month + '/' + day + ' ' + (hour >= 10 ? hour : `0${hour}`) + ':' + (minute >= 10 ? minute : `0${minute}`);
   },
   formateDuring(mss) { // 毫秒转换成天数
     var days = parseInt(mss / (1000 * 60 * 60 * 24));

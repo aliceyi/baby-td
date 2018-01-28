@@ -49,7 +49,7 @@
   position: absolute;
   left: 0px;
   right: 0px;
-  margin-top: 58%;
+  margin-top: 40%;
   color: #fff;
 }
 .grid-cell{
@@ -65,4 +65,5 @@
   height: 74rpx;
   line-height: 74rpx;
   font-size: 34rpx;
+  border-radius: 37rpx;
 }

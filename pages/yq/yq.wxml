@@ -21,7 +21,7 @@
     <block class="grid-cell"> 
       <view class="yq_block td-center td-pink-dark f16">
         <text class="yq-title">预产期</text>
-        <view class="yq-body">{{last_ycq}}</view>
+        <view class="yq-body">{{last_ycq}} {{astro}}</view>
       </view>
     </block>
     <block class="grid-cell"> 

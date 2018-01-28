@@ -1,8 +1,7 @@
 {
   "pages":[
-    "pages/yq/yq",
     "pages/td/td",
-    "pages/history/history",
+    "pages/yq/yq","pages/history/history",
     "pages/logs/logs"
   ],
   "window":{

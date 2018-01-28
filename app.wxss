@@ -25,6 +25,9 @@
 .td-black {
   color:#666;
 }
+.td-gray {
+  color:#999;
+}
 .f12 {
   font-size: 24rpx;
 }

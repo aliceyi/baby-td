@@ -6,44 +6,25 @@ Page({
    */
   data: {
     items: [
-      {
-        date: '2018-01-04',
-        status: '正常',
-        ts_count: 23,
-        child: [
-          {
-            start_time: '23:54',
-            end_time: '00:54',
-            real_acount: 2,
-            acount: 2
-          },
-          {
-            start_time: '23:54',
-            end_time: '00:54',
-            real_acount: 2,
-            acount: 2
-          }
-        ]
-      },
-      {
-        date: '2018-01-04',
-        status: '正常',
-        ts_count: 23,
-        child: [
-          {
-            start_time: '23:54',
-            end_time: '00:54',
-            real_acount: 2,
-            acount: 2
-          },
-          {
-            start_time: '23:54',
-            end_time: '00:54',
-            real_acount: 2,
-            acount: 2
-          }
-        ]
-      }
+      // {
+      //   date: '2018-01-04',
+      //   status: '正常',
+      //   ts_count: 23,
+      //   child: [
+      //     {
+      //       start_time: '23:54',
+      //       end_time: '00:54',
+      //       real_acount: 2,
+      //       acount: 2
+      //     },
+      //     {
+      //       start_time: '23:54',
+      //       end_time: '00:54',
+      //       real_acount: 2,
+      //       acount: 2
+      //     }
+      //   ]
+      // }
     ]
   },
 
@@ -55,11 +36,8 @@ Page({
     var getHistory = wx.getStorage({
       key: 'history',
       success: function (res) {
+        console.log(res.data.length, res.data);
         if (res.data) {
-          console.log(res.data);
-          // self.setData({
-          //   items: res.data,
-          // });
           let items = [];
           let item = [];
           res.data.reverse().map((n,i) => {

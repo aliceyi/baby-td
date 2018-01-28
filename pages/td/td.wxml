@@ -27,8 +27,8 @@
       </view>
     </block>
   </view>
-  <view class="container" >
-    <image class="td-shark" src="../imgs/pink/shark.png" bindtap="shark">
+  <view class="container" bindtap="shark">
+    <image class="td-shark" src="../imgs/pink/shark.png" >
     </image>
     <view class='td-shark-text'>{{btn_text}}</view>
   </view>

@@ -57,7 +57,7 @@ Page({
       });
     } else if (mins > 0) {
       self.setData({
-        count_down: mins + ":" + (seconds >= 10 ? seconds : '0' + seconds),
+        count_down: mins + ":" + (seconds > 10 ? seconds : '0' + seconds),
       });
     } else {
       self.setData({
@@ -84,12 +84,12 @@ Page({
     var minute = date.getMinutes();
     var second = date.getSeconds();
     if (type === 'h') {
-      return (hour > 10 ? hour : `0${hour}`) + ':' + (minute >= 10 ? minute : `0${minute}`) ;
+      return (hour >= 10 ? hour : `0${hour}`) + ':' + (minute >= 10 ? minute : `0${minute}`) ;
     }
     if (type === 'y') {
       return year + '/' + month + '/' +day;
     }
-    return year + '/' + month + '/' + day +' '+ (hour > 10 ?  hour :  `0${hour}`) + ':' + (minute >= 10 ? minute : `0${minute}`)  ;
+    return year + '/' + month + '/' + day +' '+ (hour >= 10 ?  hour :  `0${hour}`) + ':' + (minute >=10 ? minute : `0${minute}`)  ;
   },
   resetData: function() {
     this.setData({
@@ -140,15 +140,26 @@ Page({
         self.countDown();
       }
       //记录开始时间，
-      self.setData({
-        start_time: app.formateDate(new Date,'h'),
-      });
+      if(self.data.start_time === '') {
+        self.setData({
+          start_time: app.formateDate(new Date, 'h'),
+        });
+      }
   },
   /**
  * 点击胎动，开始记录
  */
   end: function () {
     var self = this;
+    
+    if(self.data.start_time === '') {
+      wx.showToast({
+        title: '未开始记录',
+        icon: "none",
+        duration: 2000
+      })
+      return;
+    }
     //记录结束时间，
     self.setData({
       end_time: app.formateDate(new Date, 'h'),
@@ -189,12 +200,12 @@ Page({
           })
         }
       })
-      if (!getHistory) {
+      if (self.data.historyData.length <= 0) {
         history = [
           {
             start_time: d.start_time,
             end_time: d.end_time,
-            real_acount: d.end_time,
+            real_acount: d.real_acount,
             acount: d.acount,
             date: d.date,
           }
@@ -210,7 +221,30 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    this.setData({
+      acount: 0, // 点击次数
+      real_acount: 0, // 有效点击次数
+      date: '', // 日期保存
+      real_time: '', // 上一个有效点击的时间
+      start_time: '',// 开始时间
+      count_down: '',// 倒计时时间
+      end_time: '',// 结束时间
+      real_step: 1, // 默认有效胎动间隔 min
+      countdown_time: 3600, // 倒计时默认值，单位s
+      de_count: 0, // 倒计时，计算值
+      flag: false, // 记录是否开始倒计时
+      timmer: '', // 保存倒计时定时器
+      btn_text: '点击开始', // 按钮文案
+      historyData: [
+        // {
+        //   start_time: '',
+        //   end_time: '',
+        //   real_acount: '',
+        //   acount: 0,
+        //   date: '',
+        // }
+      ], // 历史记录保存
+    });
   },
 
 
