@@ -31,5 +31,25 @@
       </view>
     </block>
   </view>
-  <!-- <label> 健康助手</label> -->
+  <view class="container">
+    <view class="td-center">
+      <label class="td-pink-dark f16">宝宝周历</label>
+    </view>
+    <view>
+      <image src='{{showItem.url}}'></image>
+      <view style="padding:0 25rpx">
+        <text class="f16 td-black">
+            {{showItem.info}}
+        </text>
+      </view>
+    </view>
+  </view>
+  <view class="container f16 td-center td-pink-dark" style="padding:20rpx 0;">
+    <picker bindchange="bindPickerChange" value="{{showItem.id}}" range="{{week}}">
+      <view class="picker">
+        查看怀孕第 {{showItem.id}} 周，宝宝的变化
+      </view>
+    </picker>
+  </view>
+
 </view>
